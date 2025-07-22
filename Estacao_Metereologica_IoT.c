@@ -30,8 +30,8 @@
 #define DEBOUNCE_TIME 200
 
 // Configurações de WiFi
-#define WIFI_SSID "S@NTOS$28"
-#define WIFI_PASSWORD "p&1xe$82"
+#define WIFI_SSID "SUA_REDE"
+#define WIFI_PASSWORD "SUA_SENHA"
 
 #define STANDARD_SEA_LEVEL_PRESSURE 101325.0
 
