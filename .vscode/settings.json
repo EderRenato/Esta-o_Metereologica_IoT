@@ -40,6 +40,11 @@
     "files.associations": {
         "website.h": "c",
         "html.h": "c",
-        "javascript.h": "c"
+        "javascript.h": "c",
+        "httpd.h": "c",
+        "stdlib.h": "c",
+        "stdio.h": "c",
+        "i2c.h": "c",
+        "cyw43_arch.h": "c"
     }
 }

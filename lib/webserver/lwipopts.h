@@ -50,6 +50,11 @@
 #define LWIP_NETIF_TX_SINGLE_PBUF   1
 #define DHCP_DOES_ARP_CHECK         0
 #define LWIP_DHCP_DOES_ACD_CHECK    0
+#define LWIP_HTTPD                  1
+#define LWIP_HTTPD_CGI 1
+#define LWIP_HTTPD_CGI_POST         1 // Habilita o método POST para CGI
+#define LWIP_HTTPD_FS_CUSTOM        1 // Habilita o sistema de arquivos customizado
+#define LWIP_HTTPD_SSI 1
 
 #ifndef NDEBUG
 #define LWIP_DEBUG                  1

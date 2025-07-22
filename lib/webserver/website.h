@@ -1,45 +1,25 @@
-#ifndef WEB_SITE_H
-#define WEB_SITE_H
+#ifndef WEBSITE_H
+#define WEBSITE_H
 
-#include "pico/cyw43_arch.h"
 #include "pico/stdlib.h"
-#include "lwip/tcp.h"
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 
-// Configurações de WiFi
-#define WIFI_SSID "S@NTOS$28"
-#define WIFI_PASSWORD "p&1xe$82"
-
-// Estrutura para armazenar dados dos sensores
+// Estrutura para compartilhar dados entre o loop principal e o servidor web.
+// Contém os dados do seu primeiro projeto.
 typedef struct {
-    float aht_temp;
-    float aht_humidity;
-    float bmp_pressure;
-    float bmp_temp;
-    float bmp_altitude;
+    float temp_aht;
+    float temp_bmp;
+    float temp_med;
+    float humidity;
+    float pressure;
+    float altitude;
+
+    float temp_min_limit;
+    float temp_max_limit;
+    float humidity_min_limit;
+    float humidity_max_limit;
 } sensor_data_t;
 
-// Estrutura para configurações
-typedef struct {
-    float temp_min;
-    float temp_max;
-    float humidity_min;
-    float humidity_max;
-    float sea_level_pressure;
-} config_settings_t;
+// Declaração da função de inicialização do servidor web
+void webserver_init(sensor_data_t *data);
 
-// Estrutura para o estado HTTP
-typedef struct {
-    char response[5300];  // Buffer para a resposta HTTP
-    size_t len;           // Tamanho total da resposta
-    size_t sent;          // Quantidade já enviada
-} http_state_t;
-
-// Protótipos de funções
-void init_web_server(void);
-void update_sensor_data(sensor_data_t new_data);
-void update_config_settings(config_settings_t new_config);
-
-#endif // WEB_SITE_H
+#endif // WEBSITE_H

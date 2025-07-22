@@ -37,6 +37,8 @@ pico_sdk_init()
 add_executable(Estacao_Metereologica_IoT Estacao_Metereologica_IoT.c 
             lib/aht20.c
             lib/bmp280.c
+            lib/buzzer.c
+            lib/ssd1306.c
             lib/webserver/website.c
             )
 
@@ -50,7 +52,9 @@ pico_enable_stdio_usb(Estacao_Metereologica_IoT 1)
 # Add the standard library to the build
 target_link_libraries(Estacao_Metereologica_IoT
         pico_stdlib
+        pico_multicore
         hardware_i2c
+        hardware_pwm
         pico_cyw43_arch_lwip_threadsafe_background
         )
 
