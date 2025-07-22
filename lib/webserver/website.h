@@ -4,7 +4,6 @@
 #include "pico/stdlib.h"
 
 // Estrutura para compartilhar dados entre o loop principal e o servidor web.
-// Contém os dados do seu primeiro projeto.
 typedef struct {
     float temp_aht;
     float temp_bmp;

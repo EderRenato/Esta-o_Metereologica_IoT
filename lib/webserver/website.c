@@ -1,6 +1,3 @@
-// Arquivo: lib/webserver/website.c
-// Versão com correção do bug de limites
-
 #include "pico/cyw43_arch.h"
 #include "lwip/tcp.h"
 #include <string.h>
@@ -9,7 +6,6 @@
 
 #include "website.h"
 
-// --- Estrutura para manter o estado de cada conexão ---
 // --- Estrutura para manter o estado de cada conexão ---
 typedef struct TCP_SERVER_T_ {
     struct tcp_pcb *server_pcb;
@@ -133,7 +129,6 @@ const char STYLES_CSS[] =
 "#form-status{text-align:center;margin-top:15px;font-weight:700;min-height:1.2em}"
 "footer{text-align:center;margin-top:2rem;color:var(--secondary-color)}";
 
-// JavaScript CORRIGIDO com debug
 const char SCRIPTS_JS[] =
 "document.addEventListener('DOMContentLoaded',function(){'use strict';"
 "const MAX_DATA_POINTS=30;"
@@ -199,7 +194,6 @@ static void send_http_response(void *arg, const char *content_type, const char *
 }
 
 // FUNÇÃO CORRIGIDA para processar requisições HTTP
-// FUNÇÃO CORRIGIDA para processar requisições HTTP
 static err_t tcp_server_recv(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err) {
     TCP_SERVER_T *state = (TCP_SERVER_T*)arg;
     if (!p) {
@@ -221,9 +215,8 @@ static err_t tcp_server_recv(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, er
 
     pbuf_free(p);
 
-    // Agora, processamos o buffer acumulado (state->request)
+    // Agora, processa o buffer acumulado (state->request)
     // Verificamos se a requisição está completa o suficiente para ser processada
-    // (Ex: contém o fim dos headers para GET, ou o corpo completo para POST)
 
     // Roteamento das requisições
     if (strstr(state->request, "GET /scripts.js")) {
@@ -255,12 +248,11 @@ static err_t tcp_server_recv(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, er
         send_http_response(state, "application/json", json_payload);
 
     } else if (strstr(state->request, "POST /settings")) {
-        // SEÇÃO CORRIGIDA - Processamento dos limites
+        // Processamento dos limites
         char *json_start = strstr(state->request, "\r\n\r\n");
         if (json_start) {
             json_start += 4; // Pula o \r\n\r\n
             
-            // Debug: mostra o JSON recebido
             printf("DEBUG: JSON recebido: %.200s\n", json_start);
 
             // Função auxiliar para extrair valores JSON

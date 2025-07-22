@@ -3,7 +3,7 @@
 
 #include "hardware/i2c.h"
 
-// Defina os endereços e registros conforme o código original
+// Defina os endereços e registros
 #define ADDR _u(0x76)
 
 #define REG_CONFIG _u(0xF5)

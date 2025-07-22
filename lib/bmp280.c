@@ -46,14 +46,14 @@ int32_t bmp280_convert(int32_t temp, struct bmp280_calib_param* params) {
 }
 
 int32_t bmp280_convert_temp(int32_t temp, struct bmp280_calib_param* params) {
-    // Utiliza os parâmetros de calibração do BMP280 para compensar o valor de temperatura lido de seus registradores
+    // Utiliza os parâmetros de calibração do BMP280 para compensar o valor de temperatura lido de registradores
     int32_t t_fine = bmp280_convert(temp, params);
     return (t_fine * 5 + 128) >> 8;
 }
 
 
 int32_t bmp280_convert_pressure(int32_t pressure, int32_t temp, struct bmp280_calib_param* params) {
-    // Utiliza os parâmetros de calibração do BMP280 para compensar o valor de pressão lido de seus registradores
+    // Utiliza os parâmetros de calibração do BMP280 para compensar o valor de pressão lido de registradores
 
     int32_t t_fine = bmp280_convert(temp, params);
 
